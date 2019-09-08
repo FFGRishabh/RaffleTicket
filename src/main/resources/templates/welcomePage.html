@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:utext="${title}"></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://getbootstrap.com/docs/3.3/assets/css/ie10-viewport-bug-workaround.css">
+
+<!-- Custom styles for this template -->
+<link href="/css/datatables.min.css" rel="stylesheet">
+<link href="/css/select.datatables.min.css" rel="stylesheet">
+
+<script
+	src="https://getbootstrap.com/docs/3.3/assets/js/ie-emulation-modes-warning.js"></script>
+
+
+<style>
+
+.dataTables_length{
+	display:none;
+}
+
+div.myPanel {
+	color: #31708f;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+	padding: 10px;
+}
+
+hr.solidline1 {
+	border-top: 5px solid #bce8f1;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+}
+
+@media ( min-width : 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+
+.navbar-brand>img {
+	height: 100%;
+}
+
+.navbar-brand {
+	padding: 0;
+}
+</style>
+
+</head>
+<body>
+
+
+
+	<!-- Include _menu.html -->
+	<th:block th:include="/_menu"></th:block>
+
+	<div class="container">
+
+		<form name='_caseNotesF' th:action="@{/postSid}" method='POST'
+			th:object="${raft}" class="form-horizontal">
+
+			<div class="row">
+				<div class="col-sm-6 myPanel">
+
+					<table id="_raffleEntryTable"
+						class="table table-responsive table-bordered table-condensed">
+						<caption>						
+
+							<strong style="color: crimson;">New Raffle Ticket Entry
+								Only:</strong>
+
+						</caption>
+
+						<tbody>
+							<tr>
+								<td><label class="col-sm-12 control-label"
+									for="_raffleTicketKey">Raffle Key: </label></td>
+								<td><div class="col-sm-12">
+										<input class="form-control input-sm" id="_raffleTicketKey"
+											th:field="*{raffleKey}" placeholder="Enter Raffle No"
+											required>
+									</div></td>
+							</tr>
+
+							<tr>
+								<td><label class="col-sm-12 control-label" for="_sid">Sid:
+								</label></td>
+								<td><div class="col-sm-12">
+										<input class="form-control input-sm" id="_sid"
+											th:field="*{sid}" placeholder="Enter your Sid" required>
+									</div></td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="row text-center">
+						<input type="submit" id="btnSubmit" class="btn btn-default btn-lg"
+							value="Submit Ticket" />
+					</div>
+				</div>
+				
+				<div class="col-sm-6 text-center">
+				
+					<table class="table table-responsive table-bordered table-condensed">
+						<caption>
+							<label class="control-label"
+									for="btnSubmit2">(Please click to draw One Raffle Winner!) </label>		
+						</caption>
+						<tbody>
+							<tr>
+							<td><input type="button" id="btnSubmit2" class="btn btn-success btn-lg"
+							value="Draw Random Raffle Winner" onclick="generateRaffleWinner();" />	</td>
+							</tr>							
+						</tbody>
+					</table>	
+					
+					
+								
+											
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<table id="raffleTicketTable" class="display compact"
+						style="width: 100%">
+						<caption>			
+							<strong style="color: goldenrod;">All Raffle Entries</strong>
+						</caption>
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>RAFFLE KEY</th>
+								<th>SID</th>
+								<th>WINNER</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+
+
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://getbootstrap.com/docs/3.3/dist/js/bootstrap.min.js"></script>
+
+	<script src="/js/datatables.min.js"></script>
+	<script src="/js/datatables.select.min.js"></script>
+
+	<script src="/js/welcome.js"></script>
+
+	<script
+		src="https://getbootstrap.com/docs/3.3/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+</body>
+</html>
+
